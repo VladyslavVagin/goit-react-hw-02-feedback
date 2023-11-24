@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import css from './App.module.css';
+import Statistics from './Statistics/Statistics';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 
 export class App extends Component {
   state = {
@@ -8,21 +9,21 @@ export class App extends Component {
     bad: 0,
   };
 
-//================================ Increse Good Feedback function
+  //================================ Increse Good Feedback function
   handleClickGood = () =>
     this.setState(prevStateGood => ({ good: prevStateGood.good + 1 }));
 
-//================================= Increase Neutral Feedback function
+  //================================= Increase Neutral Feedback function
   handleClickNeutral = () =>
     this.setState(prevStateNeutral => ({
       neutral: prevStateNeutral.neutral + 1,
     }));
 
-//==================================== Increase Bad Feedback function
+  //==================================== Increase Bad Feedback function
   handleClickBad = () =>
     this.setState(prevStateBad => ({ bad: prevStateBad.bad + 1 }));
 
-    // Calculate TOTAL quality of feedbacks
+  // Calculate TOTAL quality of feedbacks
   countTotalFeedback = () => {
     let summ = 0;
     const arrayOfFeedbacks = Object.values(this.state);
@@ -43,69 +44,20 @@ export class App extends Component {
     return (
       <div>
         <h1>Please, leave feedback</h1>
-        <ul className={css.buttonList}>
-          <li>
-            <button
-              type="button"
-              className={css.goodBtn}
-              onClick={this.handleClickGood}
-            >
-              Good
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              className={css.neutralBtn}
-              onClick={this.handleClickNeutral}
-            >
-              Neutral
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              className={css.badBtn}
-              onClick={this.handleClickBad}
-            >
-              Bad
-            </button>
-          </li>
-        </ul>
-
-        <ul>
-          <li>
-            <p className={css.statisticText}>
-              Good<span>{this.state.good}</span>
-            </p>
-          </li>
-          <li>
-            <p className={css.statisticText}>
-              Neutral<span>{this.state.neutral}</span>
-            </p>
-          </li>
-          <li>
-            <p className={css.statisticText}>
-              Bad<span>{this.state.bad}</span>
-            </p>
-          </li>
-          <li>
-            <p className={css.statisticText}>
-              Total<span>{this.countTotalFeedback()}</span>
-            </p>
-          </li>
-          <li>
-            <p className={css.statisticText}>
-              Positive feedback
-              <span>
-                {this.countPositiveFeedbackPercentage(
-                  this.countTotalFeedback()
-                )}
-                %
-              </span>
-            </p>
-          </li>
-        </ul>
+        <FeedbackOptions
+          handleClickGood={this.handleClickGood}
+          handleClickNeutral={this.handleClickNeutral}
+          handleClickBad={this.handleClickBad}
+        />
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage(
+            this.countTotalFeedback()
+          )}
+        />
       </div>
     );
   }
