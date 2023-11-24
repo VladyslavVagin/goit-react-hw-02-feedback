@@ -8,7 +8,7 @@ const FeedbackOptions = ({
   handleClickBad,
 }) => {
   return (
-    <div>
+    <>
       <ul className={css.buttonList}>
         <li>
           <button
@@ -34,7 +34,7 @@ const FeedbackOptions = ({
           </button>
         </li>
       </ul>
-    </div>
+    </>
   );
 };
 

@@ -2,7 +2,7 @@ import css from './Statistics.module.css'
 import PropTypes from 'prop-types';
 
 export const Statistics = ({good, neutral, bad, total, positivePercentage}) => {
-    return <div>
+    return <>
           <ul>
           <li>
             <p className={css.statisticText}>
@@ -34,7 +34,7 @@ export const Statistics = ({good, neutral, bad, total, positivePercentage}) => {
             </p>
           </li>
         </ul>
-    </div>
+    </>
   }
 
 Statistics.propTypes = {
