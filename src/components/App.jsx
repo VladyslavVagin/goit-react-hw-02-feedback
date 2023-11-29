@@ -11,19 +11,14 @@ export class App extends Component {
     bad: 0,
   };
 
-  //================================ Increse Good Feedback function
-  handleClickGood = () =>
-    this.setState(prevStateGood => ({ good: prevStateGood.good + 1 }));
-
-  //================================= Increase Neutral Feedback function
-  handleClickNeutral = () =>
-    this.setState(prevStateNeutral => ({
-      neutral: prevStateNeutral.neutral + 1,
-    }));
-
-  //==================================== Increase Bad Feedback function
-  handleClickBad = () =>
-    this.setState(prevStateBad => ({ bad: prevStateBad.bad + 1 }));
+  //================================ Increse Feedback function
+  onLeaveFeedback = (option) => {
+      this.setState((prevState) => {
+        return {
+          [option]: prevState[option] + 1,
+        }
+      })
+  }
 
   // Calculate TOTAL quality of feedbacks
   countTotalFeedback = () => {
@@ -43,14 +38,11 @@ export class App extends Component {
 
   //=========================================== Render JSX of feedback form
   render() {
+    const options = Object.keys(this.state);
     return (
       <div>
         <Section title="please, leave your feedback">
-          <FeedbackOptions
-            handleClickGood={this.handleClickGood}
-            handleClickNeutral={this.handleClickNeutral}
-            handleClickBad={this.handleClickBad}
-          />
+          <FeedbackOptions options={options} onLeaveFeedback={this.onLeaveFeedback}/>
         </Section>
         <Section title="statistics">
           {this.countTotalFeedback() > 0 ? (

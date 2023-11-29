@@ -29,6 +29,7 @@ button {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    background-color: aquamarine;
   }
   
   button:not(:disabled):hover {
@@ -65,13 +66,7 @@ button {
   button:not(:disabled):active {
     transform: translateY(0.125rem);
   }
-  .goodBtn {
-    background-color: green;
-  }
-  .neutralBtn {
-    background-color: yellow;
-  }
-  .badBtn {
-    background-color: red;
-  }
+
+
+
   
